@@ -1,25 +1,27 @@
 :root {
-	--color-purple: hsl(250, 68%, 27%);
-	--color-blue: hsl(223, 100%, 57%);
-	--color-white: hsl(0, 0%, 100%);
-	--color-black: hsl(0, 0%, 0%);
+  --color-purple: hsl(250, 68%, 27%);
+  --color-blue: hsl(223, 100%, 57%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-black: hsl(0, 0%, 0%);
 
-	--ff-default: 'Mouse Memoirs', sans-serif;
+  --gradient-primary: linear-gradient(to bottom, #fe71fe, #7199ff);
 
-	--heading-XL: 136px;
-	--heading-L: 88px;
-	--heading-M: 48px;
-	--heading-S: 32px;
+  --ff-default: "Mouse Memoirs", sans-serif;
 
-	--fz-body: 26px;
-	--fz-24: 24px;
-	--fz-22: 22px;
-	--fz-20: 20px;
-	--fz-18: 18px;
-	--fz-16: 16px;
-	--fz-14: 14px;
-	--fz-13: 13px;
-	--fz-12: 12px;
-	--fz-11: 11px;
-	--fz-10: 10px;
+  --heading-XL: 136px;
+  --heading-L: 88px;
+  --heading-M: 48px;
+  --heading-S: 32px;
+
+  --fz-body: 26px;
+  --fz-24: 24px;
+  --fz-22: 22px;
+  --fz-20: 20px;
+  --fz-18: 18px;
+  --fz-16: 16px;
+  --fz-14: 14px;
+  --fz-13: 13px;
+  --fz-12: 12px;
+  --fz-11: 11px;
+  --fz-10: 10px;
 }
