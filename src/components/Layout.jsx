@@ -1,5 +1,5 @@
-import START_BTN from "../assets/icon-play.svg";
 import GAME_TITLE from "../assets/game-title.png";
+import { StartButton } from "./StartButton";
 
 export const Layout = () => {
   return (
@@ -8,13 +8,13 @@ export const Layout = () => {
         <div>
           <img src={GAME_TITLE} alt="game title logo" />
         </div>
+        <StartButton />
         <button
-          className="flex h-[165px] w-[165px] items-center justify-center rounded-[50%] border-2"
-          style={{ backgroundImage: "var(--gradient-primary)" }}
+          className="h-[100px] w-[160px] bg-[blue-700] uppercase"
+          style={{ color: "var(--color-white)" }}
         >
-          <img src={START_BTN} />
+          How to play
         </button>
-        <button>How to play</button>
       </div>
     </div>
   );
