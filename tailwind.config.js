@@ -13,6 +13,12 @@ export default {
         "blue-500": "hsl(223, 100%, 57%)",
         "blue-700": "hsl(250, 68%, 27%)",
       },
+      fontSize: {
+        "heading-XL": "136px",
+        "heading-L": "88px",
+        "heading-M": "48px",
+        "heading-S": "32px",
+      },
     },
   },
   plugins: [],

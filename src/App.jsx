@@ -1,6 +1,5 @@
-import "../src/main.css";
-import "../src/styles/globals.css";
-import "../src/styles/theme.css";
+import "./main.css";
+
 import { Layout } from "./components/Layout";
 
 function App() {
