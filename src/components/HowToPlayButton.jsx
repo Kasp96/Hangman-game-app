@@ -1,8 +1,17 @@
 export const HowToPlayButton = () => {
   return (
     <button
-      className="text-heading-S flex w-[260px] justify-center rounded-[25px] bg-blue-500 py-5 tracking-wide uppercase"
-      style={{ color: "var(--color-white)" }}
+      className="text-heading-S shadow-layer-3 before:shadow-layer-4 relative flex w-[260px] justify-center rounded-[30px] bg-blue-500 py-2 tracking-wide uppercase before:absolute before:inset-[0] before:rounded-[29px] before:content-[''] mb-16"
+      style={{
+        color: "var(--color-white)",
+        textShadow: `
+                  -1px -1px 0 black,
+                   1px -1px 0 black,
+                  -1px  1px 0 black,
+                   1px  1px 0 black
+                    `,
+        WebkitTextStroke: "0.25px black",
+      }}
     >
       how to play
     </button>
