@@ -4,11 +4,16 @@
   --color-white: hsl(0, 0%, 100%);
   --color-black: hsl(0, 0%, 0%);
 
-  --gradient-primary: linear-gradient(to bottom, #fe71fe, #7199ff);
-  --gradient-secondary: linear-gradient(
+  --gradient-button: linear-gradient(to bottom, #fe71fe, #7199ff);
+  --gradient-menu: linear-gradient(
     to bottom,
     hsla(230, 56%, 47%, 100%),
     hsla(230, 100%, 24%, 83%)
+  );
+  --gradient-heading: linear-gradient(
+    to bottom,
+    hsl(209, 100%, 70%),
+    hsl(0, 0%, 100%)
   );
 
   --ff-default: "Mouse Memoirs", sans-serif;

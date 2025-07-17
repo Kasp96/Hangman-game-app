@@ -4,6 +4,7 @@ export default {
     extend: {
       backgroundImage: {
         "mobile-bg": "url(assets/background-mobile.svg)",
+        "gradient-heading": "var(--gradient-heading)",
       },
       boxShadow: {
         "layer-1": "inset 0 -10px 0 10px rgba(145, 0, 255, 0.8)",
@@ -23,6 +24,7 @@ export default {
         "heading-M": "48px",
         "heading-S": "32px",
       },
+      
     },
   },
   plugins: [],
