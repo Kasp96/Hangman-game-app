@@ -1,8 +1,9 @@
+import { BackButton } from "./BackButton";
 import { GameTitle } from "./GameTitle";
 import { HowToPlayButton } from "./HowToPlayButton";
 import { StartButton } from "./StartButton";
-
-import ICON_BACK from "../assets/icon-back.svg";
+import { ViewHeading } from "./ViewHeading";
+import { RULES } from "../constants/rules";
 
 export const Layout = () => {
   return (
@@ -16,34 +17,23 @@ export const Layout = () => {
         <StartButton />
         <HowToPlayButton />
       </div> */}
-      <div className="absolute top-0 h-full w-full bg-[rgba(0,0,0,0.0)] px-6 py-8">
-        <div className="flex items-center justify-between">
-          <span>
-            <img src={ICON_BACK} alt="icon back" />
-          </span>
-          {/* <h2 className="text-heading-M bg-gradient-heading bg-clip-text text-transparent">
-            How to Play
-          </h2> */}
-          <div className="relative text-[48px]">
-            <span
-              className="absolute inset-0 text-black"
-              style={{
-                transform: "translate(3px, 3px)",
-                zIndex: 0,
-              }}
-            >
-              How to Play
-            </span>
-            <span
-              className="bg-gradient-heading relative bg-clip-text text-transparent"
-              style={{
-                zIndex: 1,
-              }}
-            >
-              How to Play
-            </span>
-          </div>
+      {/* to jest HowToPlay */}
+      <div className="absolute top-0 flex h-full w-full flex-col gap-6 bg-[rgba(0,0,0,0.35)] px-6 py-8">
+        <div className="mb-[55px] flex items-center justify-between">
+          <BackButton />
+          <ViewHeading />
         </div>
+        {RULES.map((rule) => {
+          return (
+            <div className="rounded-[20px] bg-white p-8">
+              <div>
+                {rule.number}
+                {rule.title}
+              </div>
+              <p className="">{rule.text}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

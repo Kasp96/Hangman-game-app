@@ -3,6 +3,7 @@
   --color-blue: hsl(223, 100%, 57%);
   --color-white: hsl(0, 0%, 100%);
   --color-black: hsl(0, 0%, 0%);
+  --color-text: hsl(250, 35%, 62%);
 
   --gradient-button: linear-gradient(to bottom, #fe71fe, #7199ff);
   --gradient-menu: linear-gradient(
