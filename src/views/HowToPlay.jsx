@@ -7,7 +7,7 @@ export const HowToPlay = () => {
     <div className="absolute top-0 flex h-full w-full flex-col gap-6 bg-[rgba(0,0,0,0.35)] px-6 py-8">
       <div className="mb-[55px] flex items-center justify-between">
         <BackButton />
-        <ViewHeading />
+        <ViewHeading>How to Play </ViewHeading>
       </div>
       {RULES.map((rule) => {
         return (

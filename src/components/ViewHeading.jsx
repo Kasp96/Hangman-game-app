@@ -1,4 +1,4 @@
-export const ViewHeading = () => {
+export const ViewHeading = ({children}) => {
   return (
     <div className="relative text-[48px] tracking-[2.5px]">
       <span
@@ -8,7 +8,7 @@ export const ViewHeading = () => {
           WebkitTextStroke: "10px #243041",
         }}
       >
-        How to Play
+        {children}
       </span>
       <span
         className="bg-gradient-heading relative bg-clip-text text-transparent"
@@ -16,7 +16,7 @@ export const ViewHeading = () => {
           zIndex: 1,
         }}
       >
-        How to Play
+        {children}
       </span>
     </div>
   );
