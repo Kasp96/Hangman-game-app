@@ -26,11 +26,13 @@ export const Layout = () => {
         {RULES.map((rule) => {
           return (
             <div className="rounded-[20px] bg-white p-8">
-              <div>
-                {rule.number}
-                {rule.title}
+              <div className="flex items-center gap-4 text-[24px]">
+                <p className="text-blue-500">{rule.number}</p>
+                <p className="text-blue-700 uppercase">{rule.title}</p>
               </div>
-              <p className="">{rule.text}</p>
+              <p className="mt-4 text-[16px] leading-[120%] tracking-[0.5px] text-purple-200">
+                {rule.text}
+              </p>
             </div>
           );
         })}

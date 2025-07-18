@@ -14,9 +14,10 @@ export default {
         "layer-5": "inset 0 4px 0px 7px hsl(225, 90%, 55%)",
         "layer-6": "inset 0 -9px 0px 3px hsl(248, 73%, 20%)",
       },
-      backgroundColor: {
+      colors: {
         "blue-500": "hsl(223, 100%, 57%)",
         "blue-700": "hsl(250, 68%, 27%)",
+        "purple-200": "hsl(250, 35%, 62%)",
       },
       fontSize: {
         "heading-XL": "136px",
@@ -24,7 +25,6 @@ export default {
         "heading-M": "48px",
         "heading-S": "32px",
       },
-      
     },
   },
   plugins: [],
