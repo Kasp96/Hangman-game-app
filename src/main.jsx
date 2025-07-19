@@ -1,9 +1,10 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
-import { HowToPlay } from "./views/HowToPlay.jsx";
+import { Rules } from "./views/Rules.jsx";
 import { MainMenu } from "./views/MainMenu.jsx";
 import { Layout } from "./components/Layout.jsx";
+import { Categories } from "./views/Categories.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,11 +13,15 @@ const router = createBrowserRouter([
     children: [
       {
         element: <MainMenu />,
-        path: "menu",
+        path: "/",
       },
       {
-        element: <HowToPlay />,
-        path: "info",
+        element: <Rules />,
+        path: "rules",
+      },
+      {
+        element: <Categories />,
+        path: "categories",
       },
     ],
   },
