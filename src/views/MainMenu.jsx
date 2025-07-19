@@ -10,7 +10,9 @@ export const MainMenu = () => {
     >
       <GameTitle />
       <StartButton />
-      <BlueButton />
+      <BlueButton className="text-heading-S text-shadow-outline text-stroke mb-16 rounded-[30px] py-2 before:rounded-[29px]">
+        How to Play
+      </BlueButton>
     </div>
   );
 };

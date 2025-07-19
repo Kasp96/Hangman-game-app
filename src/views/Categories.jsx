@@ -1,6 +1,7 @@
 import data from "../api/data.json";
 import { ViewHeading } from "../components/ViewHeading";
 import { BackButton } from "../components/BackButton";
+import { BlueButton } from "../components/BlueButton";
 
 export const Categories = () => {
   return (
@@ -9,9 +10,18 @@ export const Categories = () => {
         <BackButton />
         <ViewHeading>Pick a Category</ViewHeading>
       </div>
-      {Object.keys(data.categories).map((categoryName) => {
-        return <button>{categoryName}</button>;
-      })}
+      <div className="flex flex-col items-center">
+        {Object.keys(data.categories).map((categoryName, index) => {
+          return (
+            <BlueButton
+              key={index}
+              className="mb-4 w-full rounded-[24px] py-6 text-2xl before:rounded-[22px]"
+            >
+              {categoryName}
+            </BlueButton>
+          );
+        })}
+      </div>
     </div>
   );
 };
