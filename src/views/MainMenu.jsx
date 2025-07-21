@@ -1,14 +1,12 @@
 import { GameTitle } from "../components/GameTitle";
+import { GlassPanel } from "../components/GlassPanel";
 import { StartButton } from "../components/StartButton";
 import { BlueButton } from "../components/BlueButton";
 import { Link } from "react-router-dom";
 
 export const MainMenu = () => {
   return (
-    <div
-      className="shadow-layer-5 before:shadow-layer-6 absolute top-[55%] flex h-[480px] translate-y-[-50%] flex-col items-center justify-end gap-[57px] rounded-[45px] px-8 before:absolute before:inset-0 before:rounded-[45px]"
-      style={{ backgroundImage: "var(--gradient-menu)" }}
-    >
+    <GlassPanel>
       <GameTitle />
       <StartButton />
       <Link to="/rules">
@@ -16,6 +14,6 @@ export const MainMenu = () => {
           How to Play
         </BlueButton>
       </Link>
-    </div>
+    </GlassPanel>
   );
 };

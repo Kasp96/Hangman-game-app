@@ -5,6 +5,7 @@ import { Rules } from "./views/Rules.jsx";
 import { MainMenu } from "./views/MainMenu.jsx";
 import { Layout } from "./components/Layout.jsx";
 import { Categories } from "./views/Categories.jsx";
+import { Ingame } from "./views/Ingame.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         element: <Categories />,
         path: "categories",
+      },
+      {
+        element: <Ingame />,
+        path: "gierka",
       },
     ],
   },

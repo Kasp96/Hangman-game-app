@@ -2,13 +2,14 @@ import { RULES } from "../constants/rules";
 import { OverlayContainer } from "../components/OverlayContainer";
 import { RuleCard } from "../components/RuleCard";
 import { ViewHeading } from "../components/ViewHeading";
-import { BackButton } from "../components/BackButton";
+import { GradientButton } from "../components/GradientButton";
+import ICON_BACK from "../assets/icon-back.svg";
 
 export const Rules = () => {
   return (
     <OverlayContainer>
       <div className="mb-[55px] flex items-center justify-between">
-        <BackButton />
+        <GradientButton to="/" src={ICON_BACK} />
         <ViewHeading>How to Play </ViewHeading>
       </div>
       {RULES.map((rule) => {

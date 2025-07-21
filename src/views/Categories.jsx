@@ -1,16 +1,18 @@
 import data from "../api/data.json";
 import { OverlayContainer } from "../components/OverlayContainer";
 import { ViewHeading } from "../components/ViewHeading";
-import { BackButton } from "../components/BackButton";
+import { GradientButton } from "../components/GradientButton";
 import { BlueButton } from "../components/BlueButton";
+import ICON_BACK from "../assets/icon-back.svg";
 
 export const Categories = () => {
   return (
     <OverlayContainer>
       <div className="mb-[55px] flex items-center justify-between">
-        <BackButton />
+        <GradientButton src={ICON_BACK} to="/"/>
         <ViewHeading>Pick a Category</ViewHeading>
       </div>
+      {/* mozliwe ze do zmiany i BackBtn i Viewheading ebda w jednym komponencie */}
       <div className="flex flex-col items-center">
         {Object.keys(data.categories).map((categoryName, index) => {
           return (
