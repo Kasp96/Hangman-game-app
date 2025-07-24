@@ -10,7 +10,7 @@ export const Rules = () => {
     <OverlayContainer>
       <div className="mb-[55px] flex items-center justify-between">
         <GradientButton to="/" src={ICON_BACK} />
-        <ViewHeading>How to Play </ViewHeading>
+        <ViewHeading className='text-[48px]'>How to Play </ViewHeading>
       </div>
       {RULES.map((rule) => {
         return (

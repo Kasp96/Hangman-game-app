@@ -5,6 +5,8 @@ export default {
       backgroundImage: {
         "mobile-bg": "url(assets/background-mobile.svg)",
         "gradient-heading": "var(--gradient-heading)",
+        'gradient-button':  "var(--gradient-button)"
+,        
       },
       boxShadow: {
         "layer-1": "inset 0 -10px 0 10px rgba(145, 0, 255, 0.8)",

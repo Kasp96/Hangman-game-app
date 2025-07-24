@@ -9,8 +9,8 @@ export const Categories = () => {
   return (
     <OverlayContainer>
       <div className="mb-[55px] flex items-center justify-between">
-        <GradientButton src={ICON_BACK} to="/"/>
-        <ViewHeading>Pick a Category</ViewHeading>
+        <GradientButton src={ICON_BACK} to="/" />
+        <ViewHeading className="text-[48px]">Pick a Category</ViewHeading>
       </div>
       {/* mozliwe ze do zmiany i BackBtn i Viewheading ebda w jednym komponencie */}
       <div className="flex flex-col items-center">

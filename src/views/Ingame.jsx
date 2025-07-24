@@ -19,12 +19,23 @@ export const Ingame = () => {
     >
       <OverlayContainer>
         {isModalShown && (
-          <div className="absolute top-[0] z-50 h-full w-full">
-            <GlassPanel>
-              <ViewHeading>Paused</ViewHeading>
-              <BlueButton>Continue</BlueButton>
-              <BlueButton>New category</BlueButton>
-              <BlueButton>Quit game</BlueButton>
+          <div className="absolute top-0 z-50 h-full w-full">
+            <GlassPanel className="h-[435px] gap-[37px] pb-18">
+              <ViewHeading
+                className="-mb-2 text-[90px]"
+                style={{ WebkitTextStroke: "16px #243041" }}
+              >
+                Paused
+              </ViewHeading>
+              <BlueButton className="text-heading-S w-[225px] rounded-[30px] py-2 before:rounded-[29px]">
+                Continue
+              </BlueButton>
+              <BlueButton className="text-heading-S w-[260px] rounded-[30px] py-2 before:rounded-[29px]">
+                New category
+              </BlueButton>
+              <BlueButton className="text-heading-S bg-gradient-button w-[225px] rounded-[30px] py-2 before:rounded-[29px]">
+                Quit game
+              </BlueButton>
             </GlassPanel>
           </div>
         )}

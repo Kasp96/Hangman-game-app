@@ -1,18 +1,19 @@
-export const ViewHeading = ({ children, className, style = {} }) => {
+export const ViewHeadingElement = ({ children, className }) => {
   return (
-    <div className={`relative ${className} tracking-[2.5px]`}>
+    <div
+      className={`relative ${className} text-[30px] tracking-[2.5px] uppercase`}
+    >
       <span
         className="absolute inset-0 text-black"
         style={{
           zIndex: 0,
-          WebkitTextStroke: "10px #243041",
-          ...style,
+          WebkitTextStroke: "11px #243041",
         }}
       >
         {children}
       </span>
       <span
-        className="bg-gradient-heading relative bg-clip-text text-transparent"
+        className="absolute bg-white bg-clip-text text-transparent"
         style={{
           zIndex: 1,
         }}
