@@ -27,7 +27,10 @@ export const Ingame = () => {
               >
                 Paused
               </ViewHeading>
-              <BlueButton className="text-heading-S w-[225px] rounded-[30px] py-2 before:rounded-[29px]">
+              <BlueButton
+                onClick={() => setIsModalShown((prevModal) => !prevModal)}
+                className="text-heading-S w-[225px] rounded-[30px] py-2 before:rounded-[29px]"
+              >
                 Continue
               </BlueButton>
               <BlueButton className="text-heading-S w-[260px] rounded-[30px] py-2 before:rounded-[29px]">
