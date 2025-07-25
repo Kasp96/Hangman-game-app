@@ -1,9 +1,0 @@
-.view-heading-main::before {
-  position: absolute;
-  content: "the";
-  bottom: 5rem;
-  left: 2.5rem;
-  font-size: 30px;
-  color: white;
-  text-transform: uppercase;
-}

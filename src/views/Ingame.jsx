@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ICON_MENU from "../assets/icon-menu.svg";
 import ICON_HEART from "../assets/icon-heart.svg";
 import { ALPHABET } from "../constants/alphabet";
@@ -9,9 +9,12 @@ import { LetterButton } from "../components/LetterButton";
 import { GlassPanel } from "../components/GlassPanel";
 import { ViewHeading } from "../components/ViewHeading";
 import { BlueButton } from "../components/BlueButton";
+import { CategoryContext } from "../contexts/CategoryContext";
+import { SecretWord } from "../components/SecretWord";
 
 export const Ingame = () => {
   const [isModalShown, setIsModalShown] = useState(false);
+  const [selectedCategory] = useContext(CategoryContext);
 
   return (
     <div
@@ -49,13 +52,14 @@ export const Ingame = () => {
                 src={ICON_MENU}
                 onImgClick={() => setIsModalShown((prevModal) => !prevModal)}
               />
-              <h2 className="text-[40px] text-white">Countries</h2>
+              <h2 className="text-[40px] text-white">{selectedCategory}</h2>
             </div>
             <div className="flex items-center">
               <ProgressBar />
               <img className="scale-[50%]" src={ICON_HEART} alt="heart icon" />
             </div>
           </div>
+          <SecretWord />
           <div className="flex flex-wrap gap-2">
             {ALPHABET.map((letter) => {
               return <LetterButton key={letter}>{letter}</LetterButton>;

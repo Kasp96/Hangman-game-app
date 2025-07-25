@@ -5,8 +5,7 @@ export default {
       backgroundImage: {
         "mobile-bg": "url(assets/background-mobile.svg)",
         "gradient-heading": "var(--gradient-heading)",
-        'gradient-button':  "var(--gradient-button)"
-,        
+        "gradient-button": "var(--gradient-button)",
       },
       boxShadow: {
         "layer-1": "inset 0 -10px 0 10px rgba(145, 0, 255, 0.8)",
@@ -15,6 +14,7 @@ export default {
         "layer-4": "inset 0 -3px 0px 3px hsl(248, 73%, 20%)",
         "layer-5": "inset 0 4px 0px 7px hsl(225, 90%, 55%)",
         "layer-6": "inset 0 -9px 0px 3px hsl(248, 73%, 20%)",
+        "layer-word": "inset 0px 4px 0px 3px hsla(215, 57%, 55%, 0.5)",
       },
       colors: {
         "blue-500": "hsl(223, 100%, 57%)",

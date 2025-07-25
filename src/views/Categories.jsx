@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import data from "../api/data.json";
 import ICON_BACK from "../assets/icon-back.svg";
 import { Link } from "react-router-dom";
@@ -5,10 +6,10 @@ import { OverlayContainer } from "../components/OverlayContainer";
 import { ViewHeading } from "../components/ViewHeading";
 import { GradientButton } from "../components/GradientButton";
 import { BlueButton } from "../components/BlueButton";
-import { useState } from "react";
+import { CategoryContext } from "../contexts/CategoryContext";
 
 export const Categories = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useContext(CategoryContext);
 
   return (
     <OverlayContainer>
@@ -21,7 +22,7 @@ export const Categories = () => {
           return (
             <Link key={index} className="w-full" to="/gierka">
               <BlueButton
-                onClick={() => setSelectedCategory({ categoryName })}
+                onClick={() => setSelectedCategory(categoryName)}
                 className="mb-4 w-full rounded-[24px] py-5.5 text-2xl before:rounded-[22px]"
               >
                 {categoryName}

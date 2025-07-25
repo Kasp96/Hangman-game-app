@@ -1,7 +1,7 @@
 export const ViewHeadingElement = ({ children, className }) => {
   return (
     <div
-      className={`relative ${className} text-[30px] tracking-[2.5px] uppercase`}
+      className={`max-w-2 relative ${className} text-[30px] tracking-[2.5px] uppercase`}
     >
       <span
         className="absolute inset-0 text-black"
