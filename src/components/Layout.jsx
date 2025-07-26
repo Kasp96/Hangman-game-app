@@ -7,7 +7,7 @@ export const Layout = () => {
 
   return (
     <CategoryContext.Provider value={[selectedCategory, setSelectedCategory]}>
-      <div className=" bg-mobile-bg z-0 flex min-h-screen w-full justify-center">
+      <div className=" bg-mobile-bg bg-cover z-0 flex min-h-screen w-full justify-center">
         <Outlet />
       </div>
     </CategoryContext.Provider>

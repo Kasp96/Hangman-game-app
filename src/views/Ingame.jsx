@@ -46,7 +46,7 @@ export const Ingame = () => {
           </div>
         )}
         <div className={`${isModalShown ? "-z-20" : "z-0"}`}>
-          <div className="mb-[55px] flex items-center justify-between">
+          <div className="mb-[90px] flex items-center justify-between">
             <div className="flex items-center gap-4">
               <GradientButton
                 src={ICON_MENU}
@@ -60,7 +60,7 @@ export const Ingame = () => {
             </div>
           </div>
           <SecretWord />
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center gap-2">
             {ALPHABET.map((letter) => {
               return <LetterButton key={letter}>{letter}</LetterButton>;
             })}
