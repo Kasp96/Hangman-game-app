@@ -13,7 +13,7 @@ import { OptionsModal } from "../components/OptionsModal";
 export const Ingame = () => {
   const [isModalShown, setIsModalShown] = useState(false);
   const [selectedCategory] = useContext(CategoryContext);
-  const [hasLetterBeenClicked, setHasLetterBeenCLicked] = useState(false);
+  const [clickedLetters, setClickedLetters] = useState({});
 
   return (
     <div
@@ -40,8 +40,10 @@ export const Ingame = () => {
             {ALPHABET.map((letter) => {
               return (
                 <LetterButton
-                  clicked={hasLetterBeenClicked}
-                  setClicked={setHasLetterBeenCLicked}
+                  clicked={clickedLetters[letter]}
+                  setClickedLetters={() => {
+                    setClickedLetters((prev) => ({ ...prev, [letter]: true }));
+                  }}
                   key={letter}
                 >
                   {letter}
