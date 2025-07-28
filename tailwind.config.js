@@ -15,6 +15,7 @@ export default {
         "layer-5": "inset 0 4px 0px 7px hsl(225, 90%, 55%)",
         "layer-6": "inset 0 -9px 0px 3px hsl(248, 73%, 20%)",
         "layer-word": "inset 0px 4px 0px 3px hsla(215, 57%, 55%, 0.5)",
+        "layer-hidden": "inset 0px 4px 0px 3px hsla(215, 27%, 25%, 0.25)",
       },
       colors: {
         "blue-500": "hsl(223, 100%, 57%)",

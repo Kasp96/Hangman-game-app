@@ -6,6 +6,7 @@ import { SecretLetter } from "./SecretLetter";
 export const SecretWord = () => {
   const [selectedCategory] = useContext(CategoryContext);
   const [randomWord, setRandomWord] = useState(null);
+  const [isLetterHidden, setIsLetterHidden] = useState(true);
 
   useEffect(() => {
     const randomNumber = Math.floor(Math.random() * 30);
@@ -22,18 +23,21 @@ export const SecretWord = () => {
 
   const categoryEl = data.categories[selectedCategory][randomWord];
   const arr = Object.values(categoryEl.name);
+  console.log(arr);
 
   return (
     <div className="mb-[118px] flex flex-wrap justify-center-safe gap-3">
       {arr.map((word, index) => {
         if (word === " ") {
           return (
-            <div key={index} className="h-[60px] w-[34px] bg-transparent">
-              *{" "}
-            </div>
+            <div key={index} className="h-[60px] w-[34px] bg-transparent"></div>
           );
         } else {
-          return <SecretLetter key={index}>{word}</SecretLetter>;
+          return (
+            <SecretLetter isLetterHidden={isLetterHidden} key={index}>
+              {word}
+            </SecretLetter>
+          );
         }
       })}
     </div>
