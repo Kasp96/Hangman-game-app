@@ -23,7 +23,7 @@ export const SecretWord = () => {
 
   const categoryEl = data.categories[selectedCategory][randomWord];
   const arr = Object.values(categoryEl.name);
-  console.log(arr);
+console.log(arr);
 
   return (
     <div className="mb-[118px] flex flex-wrap justify-center-safe gap-3">

@@ -15,6 +15,15 @@ export const Ingame = () => {
   const [selectedCategory] = useContext(CategoryContext);
   const [clickedLetters, setClickedLetters] = useState({});
 
+  const checkLetter = () => {
+    console.log("test");
+  };
+
+  const handleLetterClick = (letter) => {
+    setClickedLetters((prev) => ({ ...prev, [letter]: true }));
+    checkLetter();
+  };
+
   return (
     <div
       className={`absolute top-0 left-0 h-full w-full ${isModalShown ? "bg-[hsla(250,68%,27%,0.35)]" : "bg-[(hsla(250,68%,27%,0)]"}`}
@@ -40,11 +49,10 @@ export const Ingame = () => {
             {ALPHABET.map((letter) => {
               return (
                 <LetterButton
-                  clicked={clickedLetters[letter]}
-                  setClickedLetters={() => {
-                    setClickedLetters((prev) => ({ ...prev, [letter]: true }));
-                  }}
                   key={letter}
+                  letter={letter}
+                  clicked={clickedLetters[letter]}
+                  handleLetterClick={handleLetterClick}
                 >
                   {letter}
                 </LetterButton>
