@@ -3,7 +3,7 @@ import { GlassPanel } from "./GlassPanel";
 import { ViewHeading } from "./ViewHeading";
 import { Link } from "react-router-dom";
 
-export const OptionsModal = ({ setIsModalShown }) => {
+export const OptionsModal = ({ setIsModalShown, children }) => {
   return (
     <div className="absolute top-0 z-50 h-full w-full">
       <GlassPanel className="h-[435px] gap-[37px] pb-18">
@@ -11,7 +11,7 @@ export const OptionsModal = ({ setIsModalShown }) => {
           className="-mb-2 text-[90px]"
           style={{ WebkitTextStroke: "16px #243041" }}
         >
-          Paused
+          {children}
         </ViewHeading>
         <BlueButton
           onClick={() => setIsModalShown((prevModal) => !prevModal)}
