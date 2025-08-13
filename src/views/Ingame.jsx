@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useReducer } from "react";
+import { reducer } from "../reducer/reducer";
 import ICON_MENU from "../assets/icon-menu.svg";
 import ICON_HEART from "../assets/icon-heart.svg";
 import { ALPHABET } from "../constants/alphabet";
@@ -9,42 +10,66 @@ import { LetterButton } from "../components/LetterButton";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { SecretWord } from "../components/SecretWord";
 import { OptionsModal } from "../components/OptionsModal";
+import { initialState } from "../reducer/reducer";
+import data from "../api/data.json";
 
 export const Ingame = () => {
-  const [isModalShown, setIsModalShown] = useState(false);
-  const [modalTitle, setModalTitle] = useState("Paused");
   const [selectedCategory] = useContext(CategoryContext);
-  const [clickedLetters, setClickedLetters] = useState({});
-  const [secretWordArr, setSecretWordArr] = useState([]);
-  const [hiddenLetterArr, setHiddenLetterArr] = useState({});
-  const [remainingAttempts, setRemainingAttempts] = useState(85);
-  const [heartGrayLevel, setHeartGrayLevel] = useState(0);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const isGameWon = Object.values(hiddenLetterArr);
-    if (heartGrayLevel === 100) {
-      setIsModalShown(true);
-      setHeartGrayLevel(0);
-      setRemainingAttempts(85);
-      setModalTitle("You Lose");
+    const randomNumber = Math.floor(Math.random() * 30);
+    const wordData = data.categories?.[selectedCategory]?.[randomNumber];
+    if (!wordData) return;
+
+    const arr = Object.values(wordData.name);
+    const hiddenInit = {};
+    arr.forEach((letter) => {
+      if (letter !== " ") hiddenInit[letter.toUpperCase()] = true;
+    });
+
+    dispatch({ type: "SECRET_WORD", payload: { arr: arr } });
+    dispatch({ type: "HIDDEN_LETTERS", payload: { hiddenInit: hiddenInit } });
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    const isGameWon = Object.values(state.hiddenLetterArr);
+    if (state.heartGrayLevel === 100) {
+      dispatch({
+        type: "GAME_LOST",
+      });
     } else if (isGameWon.length > 0 && isGameWon.every((letter) => !letter)) {
-      setIsModalShown(true);
-      setModalTitle("You Win");
+      dispatch({
+        type: "GAME_WON",
+      });
     }
-  }, [heartGrayLevel, isModalShown, hiddenLetterArr]);
+  }, [state.heartGrayLevel, state.isModalShown, state.hiddenLetterArr]);
 
   const checkRemainingAttempts = () => {
-    setRemainingAttempts((prevAttempts) => prevAttempts - 8.5);
-    setHeartGrayLevel((prevLevel) => prevLevel + 10);
+    dispatch({
+      type: "UPDATE_ATTEMPTS",
+    });
+    dispatch({
+      type: "UPDATE_GRAY_LEVEL",
+    });
   };
 
   const handleLetterClick = (letter) => {
-    setClickedLetters((prev) => ({ ...prev, [letter]: true }));
-    if (secretWordArr.join("").toUpperCase().includes(letter.toUpperCase())) {
-      setHiddenLetterArr((prevArr) => ({
-        ...prevArr,
-        [letter]: false,
-      }));
+    dispatch({
+      type: "LETTER_PICK",
+      payload: {
+        letter: letter,
+      },
+    });
+    if (
+      state.secretWordArr.join("").toUpperCase().includes(letter.toUpperCase())
+    ) {
+      dispatch({
+        type: "HIDE_PICKED_LETTER",
+        payload: {
+          letter: letter,
+        },
+      });
     } else {
       checkRemainingAttempts();
     }
@@ -52,25 +77,31 @@ export const Ingame = () => {
 
   return (
     <div
-      className={`absolute top-0 left-0 h-full w-full ${isModalShown ? "bg-[hsla(250,68%,27%,0.35)]" : "bg-[(hsla(250,68%,27%,0)]"}`}
+      className={`absolute top-0 left-0 h-full w-full ${state.isModalShown ? "bg-[hsla(250,68%,27%,0.35)]" : "bg-[(hsla(250,68%,27%,0)]"}`}
     >
       <OverlayContainer>
-        {isModalShown && (
-          <OptionsModal setIsModalShown={setIsModalShown}>
-            {modalTitle}
+        {state.isModalShown && (
+          <OptionsModal
+            setIsModalShown={() => dispatch({ type: "SHOW_MODAL" })}
+          >
+            {state.modalTitle}
           </OptionsModal>
         )}
-        <div className={`${isModalShown ? "-z-20" : "z-0"}`}>
+        <div className={`${state.isModalShown ? "-z-20" : "z-0"}`}>
           <div className="mb-[90px] flex items-center justify-between">
             <div className="flex items-center gap-4">
               <GradientButton
                 src={ICON_MENU}
-                onImgClick={() => setIsModalShown((prevModal) => !prevModal)}
+                onImgClick={() =>
+                  dispatch({
+                    type: "SHOW_MODAL",
+                  })
+                }
               />
               <h2 className="text-[40px] text-white">{selectedCategory}</h2>
             </div>
             <div className="flex items-center">
-              <ProgressBar remainingAttempts={remainingAttempts} />
+              <ProgressBar remainingAttempts={state.remainingAttempts} />
               <div>
                 <div className="relative h-[50px] w-[54px] scale-[50%] overflow-hidden">
                   <img
@@ -83,7 +114,7 @@ export const Ingame = () => {
                     src={ICON_HEART}
                     alt="heart"
                     style={{
-                      height: `${heartGrayLevel}%`,
+                      height: `${state.heartGrayLevel}%`,
                       width: "100%",
                       objectFit: "cover",
                       objectPosition: "bottom",
@@ -94,10 +125,8 @@ export const Ingame = () => {
             </div>
           </div>
           <SecretWord
-            hiddenLetterArr={hiddenLetterArr}
-            setHiddenLetterArr={setHiddenLetterArr}
-            secretWordArr={secretWordArr}
-            setSecretWordArr={setSecretWordArr}
+            hiddenLetterArr={state.hiddenLetterArr}
+            secretWordArr={state.secretWordArr}
           />
           <div className="flex flex-wrap justify-center gap-2">
             {ALPHABET.map((letter) => {
@@ -105,7 +134,7 @@ export const Ingame = () => {
                 <LetterButton
                   key={letter}
                   letter={letter}
-                  clicked={clickedLetters[letter]}
+                  clicked={state.clickedLetters[letter]}
                   handleLetterClick={handleLetterClick}
                 >
                   {letter}
