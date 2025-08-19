@@ -6,6 +6,7 @@ export const initialState = {
   hiddenLetterArr: {},
   remainingAttempts: 85,
   heartGrayLevel: 0,
+  hasGameStarted: false,
 };
 export function reducer(state, action) {
   switch (action.type) {
@@ -67,6 +68,27 @@ export function reducer(state, action) {
         modalTitle: "You Won",
       };
     }
+    case "NEW_CATEGORY": {
+      return {
+        ...state,
+      };
+    }
+    case "START_GAME":
+      return {
+        ...state,
+        hasGameStarted: true,
+      };
+    case "END_GAME":
+      return {
+        ...state,
+        hasGameStarted: false,
+        secretWordArr: [],
+        hiddenLetterArr: {},
+        clickedLetters: {},
+        heartGrayLevel: 0,
+        remainingAttempts: 85,
+        isModalShown: false,
+      };
 
     default:
       return state;

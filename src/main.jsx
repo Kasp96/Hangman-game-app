@@ -1,6 +1,6 @@
+import App from "./App.jsx";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
 import { Rules } from "./views/Rules.jsx";
 import { MainMenu } from "./views/MainMenu.jsx";
 import { Layout } from "./components/Layout.jsx";
@@ -23,10 +23,12 @@ const router = createBrowserRouter([
       {
         element: <Categories />,
         path: "categories",
-      },
-      {
-        element: <Ingame />,
-        path: "gierka",
+        children: [
+          {
+            element: <Ingame />,
+            path: ":categoryName/:wordId",
+          },
+        ],
       },
     ],
   },

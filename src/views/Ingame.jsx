@@ -1,5 +1,5 @@
-import { useContext, useEffect, useReducer } from "react";
-import { reducer } from "../reducer/reducer";
+import { useEffect } from "react";
+import data from "../api/data.json";
 import ICON_MENU from "../assets/icon-menu.svg";
 import ICON_HEART from "../assets/icon-heart.svg";
 import { ALPHABET } from "../constants/alphabet";
@@ -7,19 +7,24 @@ import { OverlayContainer } from "../components/OverlayContainer";
 import { GradientButton } from "../components/GradientButton";
 import { ProgressBar } from "../components/ProgressBar";
 import { LetterButton } from "../components/LetterButton";
-import { CategoryContext } from "../contexts/CategoryContext";
 import { SecretWord } from "../components/SecretWord";
 import { OptionsModal } from "../components/OptionsModal";
-import { initialState } from "../reducer/reducer";
-import data from "../api/data.json";
+import { useParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 export const Ingame = () => {
-  const [selectedCategory] = useContext(CategoryContext);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = useOutletContext();
+  const { categoryName, wordId } = useParams();
 
   useEffect(() => {
-    const randomNumber = Math.floor(Math.random() * 30);
-    const wordData = data.categories?.[selectedCategory]?.[randomNumber];
+    const wordData =
+      data.categories?.[
+        categoryName
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join("")
+      ]?.[Number(wordId)];
+
     if (!wordData) return;
 
     const arr = Object.values(wordData.name);
@@ -30,7 +35,7 @@ export const Ingame = () => {
 
     dispatch({ type: "SECRET_WORD", payload: { arr: arr } });
     dispatch({ type: "HIDDEN_LETTERS", payload: { hiddenInit: hiddenInit } });
-  }, [selectedCategory]);
+  }, [wordId, categoryName, dispatch]);
 
   useEffect(() => {
     const isGameWon = Object.values(state.hiddenLetterArr);
@@ -43,7 +48,12 @@ export const Ingame = () => {
         type: "GAME_WON",
       });
     }
-  }, [state.heartGrayLevel, state.isModalShown, state.hiddenLetterArr]);
+  }, [
+    state.heartGrayLevel,
+    state.isModalShown,
+    state.hiddenLetterArr,
+    dispatch,
+  ]);
 
   const checkRemainingAttempts = () => {
     dispatch({
@@ -82,6 +92,8 @@ export const Ingame = () => {
       <OverlayContainer>
         {state.isModalShown && (
           <OptionsModal
+            state={state}
+            dispatch={dispatch}
             setIsModalShown={() => dispatch({ type: "SHOW_MODAL" })}
           >
             {state.modalTitle}
@@ -98,7 +110,7 @@ export const Ingame = () => {
                   })
                 }
               />
-              <h2 className="text-[40px] text-white">{selectedCategory}</h2>
+              <h2 className="text-[40px] text-white">{categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}</h2>
             </div>
             <div className="flex items-center">
               <ProgressBar remainingAttempts={state.remainingAttempts} />

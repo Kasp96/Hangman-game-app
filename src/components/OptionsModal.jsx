@@ -3,7 +3,7 @@ import { GlassPanel } from "./GlassPanel";
 import { ViewHeading } from "./ViewHeading";
 import { Link } from "react-router-dom";
 
-export const OptionsModal = ({ setIsModalShown, children }) => {
+export const OptionsModal = ({ setIsModalShown, children, dispatch }) => {
   return (
     <div className="absolute top-0 z-50 h-full w-full">
       <GlassPanel className="h-[435px] gap-[37px] pb-18">
@@ -20,7 +20,14 @@ export const OptionsModal = ({ setIsModalShown, children }) => {
           Continue
         </BlueButton>
         <Link to="/categories">
-          <BlueButton className="text-heading-S w-[260px] rounded-[30px] py-2 before:rounded-[29px]">
+          <BlueButton
+            onClick={() =>
+              dispatch({
+                type: "END_GAME",
+              })
+            }
+            className="text-heading-S w-[260px] rounded-[30px] py-2 before:rounded-[29px]"
+          >
             New category
           </BlueButton>
         </Link>
