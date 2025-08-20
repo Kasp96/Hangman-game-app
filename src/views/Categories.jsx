@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-import data from "../api/data.json";
 import ICON_BACK from "../assets/icon-back.svg";
 import { Link, Outlet } from "react-router-dom";
 import { OverlayContainer } from "../components/OverlayContainer";
@@ -7,6 +6,7 @@ import { ViewHeading } from "../components/ViewHeading";
 import { GradientButton } from "../components/GradientButton";
 import { BlueButton } from "../components/BlueButton";
 import { initialState, reducer } from "../reducer/reducer";
+import { PATH_TO_CATEGORY_NAME } from "../constants/categories";
 
 export const Categories = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -23,24 +23,26 @@ export const Categories = () => {
             <ViewHeading className="text-[48px]">Pick a Category</ViewHeading>
           </div>
           <div className="flex flex-col items-center">
-            {Object.keys(data.categories).map((categoryName, index) => {
-              return (
-                <Link
-                  key={index}
-                  className="w-full"
-                  to={`/categories/${categoryName.toLowerCase()}/${randomNumber}`}
-                >
-                  <BlueButton
-                    onClick={() => {
-                      dispatch({ type: "START_GAME" });
-                    }}
-                    className="mb-4 w-full rounded-[24px] py-5.5 text-2xl before:rounded-[22px]"
+            {Object.entries(PATH_TO_CATEGORY_NAME).map(
+              ([slug, name], index) => {
+                return (
+                  <Link
+                    key={index}
+                    className="w-full"
+                    to={`/categories/${slug}/${randomNumber}`} //
                   >
-                    {categoryName}
-                  </BlueButton>
-                </Link>
-              );
-            })}
+                    <BlueButton
+                      onClick={() => {
+                        dispatch({ type: "START_GAME" });
+                      }}
+                      className="mb-4 w-full rounded-[24px] py-5.5 text-2xl before:rounded-[22px]"
+                    >
+                      {name}
+                    </BlueButton>
+                  </Link>
+                );
+              },
+            )}
           </div>
         </OverlayContainer>
       )}

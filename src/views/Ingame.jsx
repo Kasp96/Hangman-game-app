@@ -11,19 +11,27 @@ import { SecretWord } from "../components/SecretWord";
 import { OptionsModal } from "../components/OptionsModal";
 import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import { PATH_TO_CATEGORY_NAME } from "../constants/categories";
 
 export const Ingame = () => {
   const { state, dispatch } = useOutletContext();
-  const { categoryName, wordId } = useParams();
+  const { categoryName: categorySlug, wordId } = useParams();
+
+  const categoryDisplayName = PATH_TO_CATEGORY_NAME[categorySlug];
 
   useEffect(() => {
+    if (!categoryDisplayName) return;
+
+    const normalizedCategories = Object.keys(data.categories).reduce(
+      (acc, key) => {
+        acc[key.toLowerCase()] = data.categories[key];
+        return acc;
+      },
+      {},
+    );
+
     const wordData =
-      data.categories?.[
-        categoryName
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join("")
-      ]?.[Number(wordId)];
+      normalizedCategories[categoryDisplayName.toLowerCase()]?.[Number(wordId)];
 
     if (!wordData) return;
 
@@ -35,7 +43,7 @@ export const Ingame = () => {
 
     dispatch({ type: "SECRET_WORD", payload: { arr: arr } });
     dispatch({ type: "HIDDEN_LETTERS", payload: { hiddenInit: hiddenInit } });
-  }, [wordId, categoryName, dispatch]);
+  }, [wordId, categoryDisplayName, dispatch]);
 
   useEffect(() => {
     const isGameWon = Object.values(state.hiddenLetterArr);
@@ -92,7 +100,6 @@ export const Ingame = () => {
       <OverlayContainer>
         {state.isModalShown && (
           <OptionsModal
-            state={state}
             dispatch={dispatch}
             setIsModalShown={() => dispatch({ type: "SHOW_MODAL" })}
           >
@@ -110,7 +117,10 @@ export const Ingame = () => {
                   })
                 }
               />
-              <h2 className="text-[40px] text-white">{categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}</h2>
+              {/* <h2 className="text-[40px] text-white">
+                {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
+              </h2> */}
+              <h2 className="text-[40px] text-white">{categoryDisplayName}</h2>
             </div>
             <div className="flex items-center">
               <ProgressBar remainingAttempts={state.remainingAttempts} />
