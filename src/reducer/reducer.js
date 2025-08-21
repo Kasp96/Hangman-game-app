@@ -15,6 +15,11 @@ export function reducer(state, action) {
         ...state,
         isModalShown: !state.isModalShown,
       };
+    case "HIDE_MODAL":
+      return {
+        ...state,
+        isModalShown: false,
+      };
     case "HIDDEN_LETTERS":
       return {
         ...state,

@@ -16,7 +16,6 @@ import { PATH_TO_CATEGORY_NAME } from "../constants/categories";
 export const Ingame = () => {
   const { state, dispatch } = useOutletContext();
   const { categoryName: categorySlug, wordId } = useParams();
-
   const categoryDisplayName = PATH_TO_CATEGORY_NAME[categorySlug];
 
   useEffect(() => {
@@ -107,7 +106,7 @@ export const Ingame = () => {
           </OptionsModal>
         )}
         <div className={`${state.isModalShown ? "-z-20" : "z-0"}`}>
-          <div className="mb-[90px] flex items-center justify-between">
+          <div className="mb-[50px] flex items-center justify-between">
             <div className="flex items-center gap-4">
               <GradientButton
                 src={ICON_MENU}
@@ -117,9 +116,6 @@ export const Ingame = () => {
                   })
                 }
               />
-              {/* <h2 className="text-[40px] text-white">
-                {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
-              </h2> */}
               <h2 className="text-[40px] text-white">{categoryDisplayName}</h2>
             </div>
             <div className="flex items-center">

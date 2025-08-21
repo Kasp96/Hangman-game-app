@@ -14,7 +14,13 @@ export const OptionsModal = ({ setIsModalShown, children, dispatch }) => {
           {children}
         </ViewHeading>
         <BlueButton
-          onClick={() => setIsModalShown((prevModal) => !prevModal)}
+          onClick={() => {
+            // setIsModalShown((prevModal) => !prevModal);
+            // tu pokombinowac zeby po wygranej/przegranej continue rozpoczynalo nowa gre ale z tej samej kategorii, a jak gra jeszcze nie byla wygrana/przegrana to continue dziala jako continue
+            dispatch({
+              type: "HIDE_MODAL",
+            });
+          }}
           className="text-heading-S w-[225px] rounded-[30px] py-2 before:rounded-[29px]"
         >
           Continue
