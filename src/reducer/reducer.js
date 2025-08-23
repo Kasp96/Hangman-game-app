@@ -7,6 +7,9 @@ export const initialState = {
   remainingAttempts: 85,
   heartGrayLevel: 0,
   hasGameStarted: false,
+  ableToContinue: true,
+  categorySlug: "",
+  wordId: Math.floor(Math.random() * 30),
 };
 export function reducer(state, action) {
   switch (action.type) {
@@ -19,6 +22,7 @@ export function reducer(state, action) {
       return {
         ...state,
         isModalShown: false,
+        ableToContinue: false,
       };
     case "HIDDEN_LETTERS":
       return {
@@ -33,6 +37,7 @@ export function reducer(state, action) {
     case "LETTER_PICK":
       return {
         ...state,
+        ableToContinue: true,
         clickedLetters: {
           ...state.clickedLetters,
           [action.payload.letter]: true,
@@ -71,17 +76,29 @@ export function reducer(state, action) {
         ...state,
         isModalShown: true,
         modalTitle: "You Won",
+        ableToContinue: true,
       };
     }
-    case "NEW_CATEGORY": {
+
+    case "RESET_GAME":
       return {
         ...state,
+        isModalShown: false,
+        modalTitle: "Paused",
+        clickedLetters: {},
+        secretWordArr: [],
+        hiddenLetterArr: {},
+        remainingAttempts: 85,
+        heartGrayLevel: 0,
+        ableToContinue: true,
+        wordId: Math.floor(Math.random() * 30),
       };
-    }
     case "START_GAME":
       return {
         ...state,
         hasGameStarted: true,
+        categorySlug: action.payload.slug,
+        wordId: Math.floor(Math.random() * 30),
       };
     case "END_GAME":
       return {

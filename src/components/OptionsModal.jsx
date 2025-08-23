@@ -3,7 +3,7 @@ import { GlassPanel } from "./GlassPanel";
 import { ViewHeading } from "./ViewHeading";
 import { Link } from "react-router-dom";
 
-export const OptionsModal = ({ setIsModalShown, children, dispatch }) => {
+export const OptionsModal = ({ children, state, dispatch }) => {
   return (
     <div className="absolute top-0 z-50 h-full w-full">
       <GlassPanel className="h-[435px] gap-[37px] pb-18">
@@ -15,11 +15,15 @@ export const OptionsModal = ({ setIsModalShown, children, dispatch }) => {
         </ViewHeading>
         <BlueButton
           onClick={() => {
-            // setIsModalShown((prevModal) => !prevModal);
-            // tu pokombinowac zeby po wygranej/przegranej continue rozpoczynalo nowa gre ale z tej samej kategorii, a jak gra jeszcze nie byla wygrana/przegrana to continue dziala jako continue
-            dispatch({
-              type: "HIDE_MODAL",
-            });
+            if (state.modalTitle === "Paused") {
+              dispatch({
+                type: "HIDE_MODAL",
+              });
+            } else if (state.modalTitle !== "Paused") {
+              dispatch({
+                type: "RESET_GAME",
+              });
+            }
           }}
           className="text-heading-S w-[225px] rounded-[30px] py-2 before:rounded-[29px]"
         >

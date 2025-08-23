@@ -15,12 +15,11 @@ import { PATH_TO_CATEGORY_NAME } from "../constants/categories";
 
 export const Ingame = () => {
   const { state, dispatch } = useOutletContext();
-  const { categoryName: categorySlug, wordId } = useParams();
+  const { categoryName: categorySlug } = useParams();
   const categoryDisplayName = PATH_TO_CATEGORY_NAME[categorySlug];
 
   useEffect(() => {
     if (!categoryDisplayName) return;
-
     const normalizedCategories = Object.keys(data.categories).reduce(
       (acc, key) => {
         acc[key.toLowerCase()] = data.categories[key];
@@ -30,7 +29,9 @@ export const Ingame = () => {
     );
 
     const wordData =
-      normalizedCategories[categoryDisplayName.toLowerCase()]?.[Number(wordId)];
+      normalizedCategories[categoryDisplayName.toLowerCase()]?.[
+        Number(state.wordId)
+      ];
 
     if (!wordData) return;
 
@@ -42,7 +43,7 @@ export const Ingame = () => {
 
     dispatch({ type: "SECRET_WORD", payload: { arr: arr } });
     dispatch({ type: "HIDDEN_LETTERS", payload: { hiddenInit: hiddenInit } });
-  }, [wordId, categoryDisplayName, dispatch]);
+  }, [state.wordId, categoryDisplayName, dispatch]);
 
   useEffect(() => {
     const isGameWon = Object.values(state.hiddenLetterArr);
@@ -50,7 +51,11 @@ export const Ingame = () => {
       dispatch({
         type: "GAME_LOST",
       });
-    } else if (isGameWon.length > 0 && isGameWon.every((letter) => !letter)) {
+    } else if (
+      isGameWon.length > 0 &&
+      isGameWon.every((letter) => !letter) &&
+      state.ableToContinue
+    ) {
       dispatch({
         type: "GAME_WON",
       });
@@ -59,9 +64,11 @@ export const Ingame = () => {
     state.heartGrayLevel,
     state.isModalShown,
     state.hiddenLetterArr,
+    state.ableToContinue,
     dispatch,
   ]);
 
+  console.log(state.secretWordArr);
   const checkRemainingAttempts = () => {
     dispatch({
       type: "UPDATE_ATTEMPTS",
@@ -99,6 +106,7 @@ export const Ingame = () => {
       <OverlayContainer>
         {state.isModalShown && (
           <OptionsModal
+            state={state}
             dispatch={dispatch}
             setIsModalShown={() => dispatch({ type: "SHOW_MODAL" })}
           >

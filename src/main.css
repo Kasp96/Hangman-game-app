@@ -3,6 +3,11 @@
 @import "../src/styles/globals.css";
 @import "../src/styles/theme.css";
 
+@theme {
+  --breakpoint-sm: 576px;
+  --breakpoint-lg: 992px;
+}
+
 @layer utilities {
   .text-shadow-outline {
     text-shadow:

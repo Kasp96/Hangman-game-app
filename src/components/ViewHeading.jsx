@@ -6,6 +6,7 @@ export const ViewHeading = ({ children, className, style = {} }) => {
         style={{
           zIndex: 0,
           WebkitTextStroke: "10px #243041",
+          ...(window.innerWidth >= 768 && { WebkitTextStroke: "20px #243041" }),
           ...style,
         }}
       >

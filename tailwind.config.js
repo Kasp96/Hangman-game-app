@@ -4,6 +4,8 @@ export default {
     extend: {
       backgroundImage: {
         "mobile-bg": "url(assets/background-mobile.svg)",
+        "tablet-bg": "url(assets/background-tablet.svg)",
+        "desktop-bg": "url(assets/background-desktop.svg)",
         "gradient-heading": "var(--gradient-heading)",
         "gradient-button": "var(--gradient-button)",
       },

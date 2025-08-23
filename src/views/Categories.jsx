@@ -10,7 +10,6 @@ import { PATH_TO_CATEGORY_NAME } from "../constants/categories";
 
 export const Categories = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const randomNumber = Math.floor(Math.random() * 30);
 
   return (
     <>
@@ -29,11 +28,14 @@ export const Categories = () => {
                   <Link
                     key={index}
                     className="w-full"
-                    to={`/categories/${slug}/${randomNumber}`} //
+                    to={`/categories/${slug}/${state.wordId}`} //
                   >
                     <BlueButton
                       onClick={() => {
-                        dispatch({ type: "START_GAME" });
+                        dispatch({
+                          type: "START_GAME",
+                          payload: { slug: slug },
+                        });
                       }}
                       className="mb-4 w-full rounded-[24px] py-5.5 text-2xl before:rounded-[22px]"
                     >
