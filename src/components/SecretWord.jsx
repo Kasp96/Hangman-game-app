@@ -19,7 +19,7 @@ export const SecretWord = ({ secretWordArr, hiddenLetterArr }) => {
     <div className="mb-[118px] flex flex-wrap justify-center gap-3">
       {words.map((word, wordIndex) => {
         const scale =
-          word.length > 10
+          word.length > 9
             ? "scale-75"
             : word.length > 8
               ? "scale-90"

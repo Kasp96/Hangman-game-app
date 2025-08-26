@@ -5,10 +5,11 @@ import { ViewHeading } from "../components/ViewHeading";
 import { ViewHeadingElement } from "../components/ViewHeadingElement";
 import { Link } from "react-router-dom";
 
+
 export const MainMenu = () => {
   return (
-    <GlassPanel className="h-[480px] gap-[57px] min-md:w-[592px] min-md:h-[500px]">
-      <ViewHeading className="mb-2 min-md:-mb-4 text-[88px] min-md:text-[140px]">
+    <GlassPanel className="h-[480px] gap-[57px] min-md:h-[500px] min-md:w-[592px]">
+      <ViewHeading className="mb-2 text-[88px] min-md:-mb-4 min-md:text-[140px]">
         <ViewHeadingElement className="top-2.5 left-11">the</ViewHeadingElement>
         Hangman
         <ViewHeadingElement className="bottom-10 left-[60%]">
