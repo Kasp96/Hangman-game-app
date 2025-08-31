@@ -5,7 +5,8 @@
 
 @theme {
   --breakpoint-sm: 576px;
-  --breakpoint-lg: 992px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1200px;
 }
 
 @layer utilities {
@@ -21,4 +22,20 @@
     -webkit-text-stroke-width: 0.25px;
     -webkit-text-stroke-color: black;
   }
+}
+.bg-gradient-button {
+  background-image: var(--gradient-button);
+}
+.bg-gradient-button-hover {
+  background-image: var(--gradient-button-hover);
+}
+.gradient-styles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -10;
 }

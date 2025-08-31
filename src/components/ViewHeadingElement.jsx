@@ -1,13 +1,17 @@
+import { useTextStroke } from "../hooks/useTextStroke";
+
 export const ViewHeadingElement = ({ children, className }) => {
+  const textElStroke = useTextStroke();
+
   return (
     <div
-      className={`max-w-2 relative ${className} text-[30px] tracking-[2.5px] uppercase`}
+      className={`relative max-w-2 ${className} text-[30px] tracking-[2.5px] uppercase min-md:text-[50px]`}
     >
       <span
         className="absolute inset-0 text-black"
         style={{
           zIndex: 0,
-          WebkitTextStroke: "11px #243041",
+          WebkitTextStroke: `${textElStroke + "px"} #243041`,
         }}
       >
         {children}

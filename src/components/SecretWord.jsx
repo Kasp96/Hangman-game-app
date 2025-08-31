@@ -16,7 +16,7 @@ export const SecretWord = ({ secretWordArr, hiddenLetterArr }) => {
   });
   if (currentWord.length > 0) words.push(currentWord);
   return (
-    <div className="mb-[118px] flex flex-wrap justify-center gap-3">
+    <div className="mb-[118px] flex flex-wrap justify-center gap-3 ">
       {words.map((word, wordIndex) => {
         const scale =
           word.length > 9
@@ -26,7 +26,7 @@ export const SecretWord = ({ secretWordArr, hiddenLetterArr }) => {
               : "scale-100";
 
         return (
-          <div key={wordIndex} className={`flex gap-2 ${scale}`}>
+          <div key={wordIndex} className={`flex gap-2 min-md:gap-4 ${scale}`}>
             {word.map(({ char, index }) => (
               <SecretLetter
                 hiddenLetterArr={hiddenLetterArr}

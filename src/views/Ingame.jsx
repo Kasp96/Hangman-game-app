@@ -124,19 +124,21 @@ export const Ingame = () => {
                   })
                 }
               />
-              <h2 className="text-[40px] text-white">{categoryDisplayName}</h2>
+              <h2 className="ml-15 text-[40px] text-white min-md:ml-23 min-md:text-[48px] min-md:tracking-[1px] min-md:uppercase min-lg:ml-55 min-lg:text-[88px] min-lg:normal-case">
+                {categoryDisplayName}
+              </h2>
             </div>
             <div className="flex items-center">
               <ProgressBar remainingAttempts={state.remainingAttempts} />
               <div>
-                <div className="relative h-[50px] w-[54px] scale-[50%] overflow-hidden">
+                <div className="relative h-[50px] w-[50px] scale-[50%] overflow-hidden min-md:ml-[2.5rem] min-md:scale-[100%]">
                   <img
-                    className="relative z-0"
+                    className="relative z-0 min-md:w-[54px]"
                     src={ICON_HEART}
                     alt="heart icon"
                   />
                   <img
-                    className="absolute bottom-0 left-0 grayscale-100"
+                    className="absolute bottom-0 left-0 grayscale-100 min-md:bottom-[0.25rem]"
                     src={ICON_HEART}
                     alt="heart"
                     style={{
@@ -154,7 +156,7 @@ export const Ingame = () => {
             hiddenLetterArr={state.hiddenLetterArr}
             secretWordArr={state.secretWordArr}
           />
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-2 min-md:gap-4">
             {ALPHABET.map((letter) => {
               return (
                 <LetterButton
